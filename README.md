@@ -1,26 +1,22 @@
 # Classification de feuilles d'arbres
 
-Mini-projet ENSEM. Des CNN sont comparés sur des photos de feuilles : d'abord 4 classes, puis 32.
+Compte rendu du 30 juin 2026, ENSEM, méthodes d'apprentissage. Hafsa Mehdaoui.
 
-Les notebooks enregistrent les courbes. Sur 4 classes, la validation dépasse l'objectif de 75 % (plusieurs essais au-dessus de 95 %). Sur 32 classes, le meilleur passage enregistré est autour de 84 % de validation.
+Deux CNN classent des photos de feuilles. Le seuil demandé était 75 % de précision de validation.
 
-Le compte-rendu écrit est `compte_rendu_final_feuilles.pdf`.
+| Base | Architecture retenue | Précision de validation |
+| --- | --- | --- |
+| 4 espèces | 1 bloc convolutif, images 28×28, 30 epochs | 98,4 % |
+| 32 espèces | 4 blocs convolutifs, images 56×56, 30 epochs | 96,8 % |
 
-## Fichiers
+Une variante avec augmentation des images et dropout (40 %) a été testée sur les 32 espèces. Elle limite la mémorisation de l'entraînement, mais la validation tombe à 83,8 %. Ce n'est pas le modèle retenu.
 
-- `farbre_proj4.ipynb` — 4 classes, dossier `./data_4_classes`
-- `farbre_proj32.ipynb` — 32 classes, dossier `./data_32_classes`
-- `compte_rendu_final_feuilles.pdf`
-- `Code_Classe4_pdf.pdf` et `Code_Classe32_pdf.pdf` — export du code
+Le détail est dans [cr_feuilles_HafsaMehdaoui.pdf](cr_feuilles_HafsaMehdaoui.pdf).
 
-## Données
+## Programmes
 
-Les images ne sont pas dans ce dépôt. Chaque classe est un sous-dossier de photos. Le jeu utilisé en cours est celui décrit par Munisami et al. (2015), *Plant Leaf Recognition Using Shape Features and Colour Histogram with K-nearest Neighbour Classifiers*.
+- `TP_4types.py` — 4 espèces. Les images sont dans `classe4/data_4_classes/`, une espèce par sous-dossier.
+- `TP_32types.py` — 32 espèces. Les images sont dans `data_32_classes/`.
+- `TP_32types_regularise.py` — la même base, avec augmentation et dropout.
 
-```text
-data_4_classes/
-  espece_a/*.jpg
-  espece_b/*.jpg
-```
-
-TensorFlow et scikit-learn sont nécessaires pour relancer l'entraînement.
+Les photos ne sont pas dans ce dépôt. TensorFlow et Matplotlib suffisent pour relancer un script.
